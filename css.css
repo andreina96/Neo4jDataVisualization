@@ -1,0 +1,15 @@
+svg.principal{
+	background-color : #E7E9EB;
+	width : 100%;
+	/*background-size: cover;*/
+	height : 100%;
+	padding : 0; /* reset */
+	padding-bottom : 30%;
+}
+
+circle{
+	stroke : #E392ED;
+	stroke-width : 2.5px;
+	fill : #F29CFC;
+	opacity : 0.6;
+}

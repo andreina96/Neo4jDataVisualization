@@ -1,0 +1,20 @@
+{
+	data : [
+	{
+		"id": "225",
+		"label": "Person",
+		"properties": {
+		  "born": 1964,
+		  "name": "Keanu Reeves"
+		}
+	},
+	{
+		"id": "226",
+		"labels": "Person",
+		"properties": {
+		  "born": 1967,
+		  "name": "Carrie-Anne Moss"
+		}
+	}
+	]
+}

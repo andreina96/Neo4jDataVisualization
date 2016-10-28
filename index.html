@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<link href="css.css" rel="stylesheet" type="text/css">
+		<script src = "d3.js"></script>
+		<script>
+			function draw(data){
+				"use strict";
+				var svg = d3.select("body")
+							.append("svg")
+							.attr("class", "principal");
+							
+				var block = svg.append("g");
+				
+				var circle = block.selectAll("circle")
+								.data(data)
+								.enter()
+								.append("circle");
+				
+				var j = 0;
+				var k = 0;
+				
+				circle.data(data)
+					.attr("cx", j = function(){ return Math.random() * 500 + 4; })
+					.attr("cy", k = function(){ return Math.random() * 500 + 4; })
+					.attr("r", 35);
+								
+				var text = block.selectAll("text")
+								.data(data)
+								.enter()
+								.append("text");
+					
+				text.attr("x", j)
+					.attr("y", k)
+					.attr("fill", "black")
+					.text(function(d){ return d[1]; });
+					
+			}
+		</script>
+	</head>
+	<body>
+		<script>
+			var json = [{1 : "A", 2 : "B"}, {1 : "C", 2 : "D"}];
+			d3.json(json, draw(json));
+		</script>
+	</body>
+</html>
