@@ -7,41 +7,39 @@
 		<script>
 			function draw(data){
 				"use strict";
+				
 				var svg = d3.select("body")
 							.append("svg")
 							.attr("class", "principal");
 							
-				var block = svg.append("g");
+				var block = svg.selectAll("g").data(data.nodes).enter().append("g");
 				
-				var circle = block.selectAll("circle")
-								.data(data)
-								.enter()
-								.append("circle");
+				var circle = block.append("circle")
+								.attr("class", function(d){ return d["name"]; })
+								.attr("cx", function(d){ return d["age"] * 10; })
+								.attr("cy", function(d){ return d["age"] * 10; })
+								.attr("r", 35);
 				
-				var j = 0;
-				var k = 0;
+				var text = block.append("text")
+								.attr("class", function(d){ return d["name"]; })
+								.attr("x", function(d){ return d["age"] * 10; })
+								.attr("y", function(d){ return d["age"] * 10; })
+								.attr("fill", "black")
+								.text(function(d){ return d["name"]; });
 				
-				circle.data(data)
-					.attr("cx", j = function(){ return Math.random() * 500 + 4; })
-					.attr("cy", k = function(){ return Math.random() * 500 + 4; })
-					.attr("r", 35);
-								
-				var text = block.selectAll("text")
-								.data(data)
-								.enter()
-								.append("text");
-					
-				text.attr("x", j)
-					.attr("y", k)
-					.attr("fill", "black")
-					.text(function(d){ return d[1]; });
-					
+				var link = svg.selectAll("line").data(data.links).enter().append("line")
+								.attr("x1", 100)
+								.attr("y1", 100)
+								.attr("x2", 220)
+								.attr("y2", 220)
+								.attr("color", "black");
 			}
 		</script>
 	</head>
 	<body>
 		<script>
-			var json = [{1 : "A", 2 : "B"}, {1 : "C", 2 : "D"}];
+			var json = {"nodes" : [{"name" : "Andreína", "age" : 10}, {"name" : "Jean Carlo", "age" : 22}],
+						 "links" : [{"source" : "Andreína", "target" : "Jean Carlo", "value" : "ama"}]};			
 			d3.json(json, draw(json));
 		</script>
 	</body>
